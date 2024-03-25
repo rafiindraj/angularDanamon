@@ -38,7 +38,6 @@ export class RegisterComponent {
         // Handle the duplicate case, e.g., show an error message
         alert('A user with this username already exists. Please choose a different username.');
       } else {
-        // Proceed with registration
         const newUser = {
           id: this.generateId(),
           ...this.registerForm.value
@@ -46,7 +45,6 @@ export class RegisterComponent {
         registeredUsers.push(newUser);
         localStorage.setItem('users', JSON.stringify(registeredUsers));
         this.registerUser()
-        // Navigate to login or other appropriate action
       }
     }
   }
