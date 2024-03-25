@@ -1,0 +1,45 @@
+<!-- feature1/login/login.component.html -->
+<div class="flex justify-center items-center h-screen bg-lilac">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-1/2">
+        <h2
+            class="text-2xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-green-500 to-blue-500">
+            Login Dashboard</h2>
+
+        <!-- Reactive Form -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <!-- Username input -->
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <input type="text" id="username" formControlName="username"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Admin" />
+                <div *ngIf="submitted && loginForm.value.username.errors" class="text-red-400">
+                    <div *ngIf="loginForm.value.username.errors">Username is required.</div>
+                </div>
+            </div>
+
+            <!-- Password input -->
+            <div class="mb-6">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" type="password" id="password"
+                    formControlName="password"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Admin" />
+                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Toggle password visibility'" [attr.aria-pressed]="!hidePassword">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <div *ngIf="submitted && loginForm.value.password.errors" class="text-red-400">
+                    <div *ngIf="loginForm.value.password.errors">Password is required.</div>
+                </div>
+            </div>
+
+            <!-- Login button -->
+            <button type="submit"
+                class="bg-purple-300 text-black py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
+                Login
+            </button>
+            <p class="mt-2 cursor-pointer" (click)="navigateToRegister()">I want to register</p>
+        </form>
+    </div>
+</div>

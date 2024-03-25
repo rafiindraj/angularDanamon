@@ -1,0 +1,57 @@
+<app-header></app-header>
+
+<div class="flex justify-center items-center h-screen">
+    <div class="overflow-x-auto w-full px-40 rounded-lg">
+        <table mat-table [dataSource]="dataSource" matSort class="min-w-full">
+
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef>ID</th>
+                <td mat-cell *matCellDef="let element">
+                  <span>{{ element.id }}</span>
+                  <input *ngIf="element.isEdit" [(ngModel)]="element.id" type="text">
+                </td>
+              </ng-container>
+            
+              <!-- Username Column -->
+              <ng-container matColumnDef="username">
+                <th mat-header-cell *matHeaderCellDef>Username</th>
+                <td mat-cell *matCellDef="let element">
+                  <span *ngIf="!element.isEdit">{{ element.username }}</span>
+                  <input *ngIf="element.isEdit" [(ngModel)]="element.username" type="text">
+                </td>
+              </ng-container>
+            
+              <!-- Email Column -->
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef>Email</th>
+                <td mat-cell *matCellDef="let element">
+                  <span *ngIf="!element.isEdit">{{ element.email }}</span>
+                  <input *ngIf="element.isEdit" [(ngModel)]="element.email" type="email">
+                </td>
+              </ng-container>
+            
+              <!-- Role Column -->
+              <ng-container matColumnDef="role">
+                <th mat-header-cell *matHeaderCellDef>Role</th>
+                <td mat-cell *matCellDef="let element">
+                  <span *ngIf="!element.isEdit">{{ element.role }}</span>
+                  <input *ngIf="element.isEdit" [(ngModel)]="element.role" type="text">
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                <td mat-cell *matCellDef="let element">
+                  <button *ngIf="!element.isEdit" (click)="startEdit(element)">Edit</button>
+                  <button *ngIf="element.isEdit" (click)="saveEdit(element)">Save</button>
+                </td>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+    </div>
+</div>
+
+
+      

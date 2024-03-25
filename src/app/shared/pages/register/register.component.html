@@ -1,0 +1,54 @@
+<div class="flex justify-center items-center h-screen bg-lilac">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-1/2">
+        <h2
+            class="text-2xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-green-500 to-blue-500">
+            Register Dashboard</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="mb-4">
+                <label for="username" class="block text-gray-700 text-sm font-bold mb-2">Username</label>
+                <input type="text" id="username" formControlName="username"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Admin" />
+                <div *ngIf="submitted && registerForm.value.username.errors" class="text-red-400">
+                    <div *ngIf="registerForm.value.username.errors">Username is required.</div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                <input type="email" id="email" formControlName="email"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Email" />
+                <div *ngIf="submitted && registerForm.value.email.errors" class="text-red-400">
+                    <div *ngIf="registerForm.value.email.errors">Username is required.</div>
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                <input matInput [type]="hidePassword ? 'password' : 'text'" type="password" id="password"
+                    formControlName="password"
+                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    placeholder="Password" />
+                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword"
+                    [attr.aria-label]="'Toggle password visibility'" [attr.aria-pressed]="!hidePassword">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <div *ngIf="submitted && registerForm.value.password.errors" class="text-red-400">
+                    <div *ngIf="registerForm.value.password.errors">Password is required.</div>
+                </div>
+            </div>
+            <div class="mb-6">
+                <select formControlName="role" class="mb-2 p-3 border rounded">
+                    <option value="">Select Role</option>
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+            </div>
+            <button type="submit"
+                class="bg-purple-300 text-black py-2 px-4 rounded-md focus:outline-none focus:shadow-outline">
+                Register
+            </button>
+
+            <p class="mt-2 cursor-pointer" (click)="navigateToLogin()">I want to login</p>
+        </form>
+    </div>
+</div>
